@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement, Ref } from 'react';
 
-const ModalContainer = function <T>({ name, onChange }: { name: T; onChange: (name: T) => void }) {
+const ModalContainer = function <T>({ name, onChange }: { name: T; onChange: (name: T) => void }, ref: Ref<any>) {
   return <>
     <h1>
       hello world
@@ -10,8 +10,13 @@ const ModalContainer = function <T>({ name, onChange }: { name: T; onChange: (na
     </div>
   </>;
 };
+// const Modal = React.forwardRef(ModalContainer);
 
-const Modal = React.forwardRef(ModalContainer);
+/**
+ * @see https://coderedirect.com/questions/329183/react-with-typescript-generics-while-using-react-forwardref
+ */
+const Modal = React.forwardRef(ModalContainer) as
+  <T>(p: { name: T; onChange: (name: T) => void } & { ref?: Ref<any> }) => ReactElement;
 
 function UserPage() {
   return <Modal name={'hello'} onChange={(name) => {
