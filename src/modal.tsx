@@ -1,6 +1,16 @@
-import React, { ReactElement, Ref } from 'react';
+import React, { ReactElement, Ref, useImperativeHandle, useRef } from 'react';
 
-const ModalContainer = function <T>({ name, onChange }: { name: T; onChange: (name: T) => void }, ref: Ref<any>) {
+type ModalHandle = {
+  sayHello: () => void;
+}
+
+const ModalContainer = function <T>({
+  name,
+  onChange,
+}: { name: T; onChange: (name: T) => void }, ref: Ref<ModalHandle>) {
+  useImperativeHandle(ref, () => ({
+    sayHello: () => alert(name),
+  }));
   return <>
     <h1>
       hello world
@@ -19,8 +29,12 @@ const Modal = React.forwardRef(ModalContainer) as
   <T>(p: { name: T; onChange: (name: T) => void } & { ref?: Ref<any> }) => ReactElement;
 
 function UserPage() {
-  return <Modal name={'hello'} onChange={(name) => {
-    console.log(name);
-  }
-  }/>;
+  const modalRef = useRef<ModalHandle>();
+  return <>
+    <Modal name={'hello'} onChange={(name) => {
+      console.log(name);
+    }
+    } ref={modalRef}/>
+    <button onClick={() => modalRef.current?.sayHello()}> click it</button>
+  </>;
 }
