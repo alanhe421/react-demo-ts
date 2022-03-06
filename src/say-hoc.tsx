@@ -1,12 +1,12 @@
 import React, { useImperativeHandle } from 'react';
 
 export function SayHoc({ boss }: { boss: string }) {
-  return (props: any) => {
+  return React.forwardRef((props: any, ref) => {
     return <h1>
       from:{boss} say hello:
-      <User {...props}/>
+      <User ref={ref} {...props}/>
     </h1>;
-  };
+  });
 }
 
 
