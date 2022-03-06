@@ -1,23 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { SayHoc } from './say-hoc';
+
+const Say = SayHoc({ boss: 'L' });
 
 function App() {
+  const sayRef = useRef<any>();
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src={logo} className="App-logo" alt="logo"/>
+        <Say name={'2121'} ref={sayRef}/>
+        <button onClick={() => {
+          sayRef.current?.say();
+        }}>
+          say alert
+        </button>
       </header>
     </div>
   );
