@@ -136,16 +136,6 @@ module.exports = function (webpackEnv) {
           ],
           sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
         },
-      },
-      {
-        test: /\.mdx?$/,
-        use: [
-          {
-            loader: '@mdx-js/loader',
-            /** @type {import('@mdx-js/loader').Options} */
-            options: {}
-          }
-        ]
       }
     ].filter(Boolean);
     if (preProcessor) {
@@ -398,6 +388,16 @@ module.exports = function (webpackEnv) {
                 limit: imageInlineSizeLimit,
                 name: 'static/media/[name].[hash:8].[ext]',
               },
+            },
+            {
+              test: /\.mdx?$/,
+              use: [
+                {
+                  loader: '@mdx-js/loader',
+                  /** @type {import('@mdx-js/loader').Options} */
+                  options: {}
+                }
+              ]
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
