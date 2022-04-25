@@ -389,16 +389,16 @@ module.exports = function (webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
-            {
-              test: /\.mdx?$/,
-              use: [
-                {
-                  loader: '@mdx-js/loader',
-                  /** @type {import('@mdx-js/loader').Options} */
-                  options: {}
-                }
-              ]
-            },
+            // {
+            //   test: /\.mdx?$/,
+            //   use: [
+            //     {
+            //       loader: '@mdx-js/loader',
+            //       /** @type {import('@mdx-js/loader').Options} */
+            //       options: {}
+            //     }
+            //   ]
+            // },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
