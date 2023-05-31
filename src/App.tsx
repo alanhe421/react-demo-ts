@@ -2,12 +2,20 @@ import React, { useRef, useEffect } from 'react';
 import './App.css';
 import { SayHoc } from './say-hoc';
 import { Terminal } from 'xterm';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import DraggableBox from "./drag-box";
+import DropContainer from "./drop-container";
 
-const Say = SayHoc({ boss: 'L' });
+const Say = SayHoc({boss: 'L'});
 
 function App() {
   const sayRef = useRef<any>();
-
+  const [position, setPosition] = React.useState({x: 0, y: 0});
+  const handleDrop = (left:number, top:number) => {
+    console.log('handleDrop', left, top);
+    setPosition({x: left, y: top});
+  };
   useEffect(() => {
     const term = new Terminal();
     const elementById = document.getElementById('terminal');
@@ -17,9 +25,17 @@ function App() {
     return () => term.clear();
   }, []);
 
+
   return (
-    <div className="App" id={'terminal'}>
-    </div>
+      <>
+        <div className="App" id={'terminal'}>
+        </div>
+        <DndProvider backend={HTML5Backend}>
+          <DropContainer handleDrop={handleDrop}>
+            <DraggableBox left={position.x} top={position.y} hideSourceOnDrag={true}/>
+          </DropContainer>
+        </DndProvider>
+      </>
   );
 }
 
