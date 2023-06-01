@@ -2,8 +2,8 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 
 const style: React.CSSProperties = {
-  height: '100%',
-  width: '100%',
+  height: '100vh',
+  width: '100vw',
   position: 'relative',
 };
 
@@ -14,7 +14,7 @@ const DropContainer = ({handleDrop, children}) => {
       const delta = monitor.getDifferenceFromInitialOffset();
       let left = Math.round(item.left + delta.x);
       let top = Math.round(item.top + delta.y);
-      handleDrop(item.id, left, top);
+      handleDrop(left, top);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),

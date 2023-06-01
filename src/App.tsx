@@ -28,9 +28,9 @@ function App() {
 
   return (
       <>
+        <DndProvider backend={HTML5Backend}>
         <div className="App" id={'terminal'}>
         </div>
-        <DndProvider backend={HTML5Backend}>
           <DropContainer handleDrop={handleDrop}>
             <DraggableBox left={position.x} top={position.y} hideSourceOnDrag={true}/>
           </DropContainer>
