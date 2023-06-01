@@ -2,8 +2,7 @@ import React from 'react';
 import { useDrag } from 'react-dnd';
 
 const style = {
-  cursor: 'move',
-  zIndex:222
+  zIndex: 222
 };
 
 const DraggableBox = ({left, top, hideSourceOnDrag}) => {
@@ -20,9 +19,17 @@ const DraggableBox = ({left, top, hideSourceOnDrag}) => {
   }
 
   return (
-      <div ref={drag} style={{...style, left, top, position: 'absolute'}}>
-        Drag me around
+      <div style={{...style, left, top, position: 'absolute'}}>
+        <div className={'header'} ref={drag} style={{
+          cursor: 'move',
+        }}>
+          Drag me around header
+        </div>
+        <div className={'body'}>
+          Drag me around body
+        </div>
       </div>
+
   );
 };
 
