@@ -11,8 +11,8 @@ const Say = SayHoc({boss: 'L'});
 
 function App() {
   const sayRef = useRef<any>();
-  const [position, setPosition] = React.useState({x: 0, y: 0});
-  const handleDrop = (left:number, top:number) => {
+  const [position, setPosition] = React.useState({x: 800, y: 300});
+  const handleDrop = (left: number, top: number) => {
     console.log('handleDrop', left, top);
     setPosition({x: left, y: top});
   };
@@ -28,10 +28,11 @@ function App() {
 
   return (
       <>
+
         <DndProvider backend={HTML5Backend}>
-        <div className="App" id={'terminal'}>
-        </div>
           <DropContainer handleDrop={handleDrop}>
+            <div className="App" id={'terminal'}>
+            </div>
             <DraggableBox left={position.x} top={position.y} hideSourceOnDrag={true}/>
           </DropContainer>
         </DndProvider>

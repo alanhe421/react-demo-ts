@@ -3,6 +3,7 @@ import { useDrag } from 'react-dnd';
 
 const style = {
   cursor: 'move',
+  zIndex:222
 };
 
 const DraggableBox = ({left, top, hideSourceOnDrag}) => {

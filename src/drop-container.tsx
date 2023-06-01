@@ -7,7 +7,7 @@ const style: React.CSSProperties = {
   position: 'relative',
 };
 
-const DropContainer = ({handleDrop, children}) => {
+const DropContainer = ({handleDrop, children = null}) => {
   const [{isOver}, drop] = useDrop(() => ({
     accept: 'box',
     drop: (item: any, monitor) => {
@@ -31,7 +31,6 @@ const DropContainer = ({handleDrop, children}) => {
                   right: 0,
                   left: 0,
                   bottom: 0,
-                  backgroundColor: 'rgba(0, 255, 0, 0.3)',
                 }}
             />
         )}
