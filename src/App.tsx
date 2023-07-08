@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import TerminalPage from './terminal';
 import Home from './home';
+import MonacoEditorPage from './monaco-editor';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home/>,
+  },
+  {
+    path: '/monaco-editor',
+    element: <MonacoEditorPage/>,
   },
 ]);
 
