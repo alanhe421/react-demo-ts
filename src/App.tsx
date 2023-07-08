@@ -1,26 +1,27 @@
 import React, { useRef, useEffect } from 'react';
 import './App.css';
-import { SayHoc } from './say-hoc';
-import { Terminal } from 'xterm';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
+import TerminalPage from './terminal';
+import Home from './home';
 
-const Say = SayHoc({ boss: 'L' });
+const router = createBrowserRouter([
+  {
+    path: '/terminal',
+    element: <TerminalPage/>,
+  },
+  {
+    path: '/',
+    element: <Home/>,
+  },
+]);
 
 function App() {
-  const sayRef = useRef<any>();
-
-  useEffect(() => {
-    const term = new Terminal();
-    const elementById = document.getElementById('terminal');
-    if (!elementById) return;
-    term.open(elementById);
-    term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ');
-    return () => term.clear();
-  }, []);
-
-  return (
-    <div className="App" id={'terminal'}>
-    </div>
-  );
+  return <React.StrictMode>
+    <RouterProvider router={router}/>
+  </React.StrictMode>;
 }
 
 export default App;
