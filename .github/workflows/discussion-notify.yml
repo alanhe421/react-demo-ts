@@ -29,5 +29,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            There are currently ${{count}} discussions, come on!
+            There are currently ${{steps.repo-discussion.outputs.discussionCount}} discussions, come on!
           format: markdown
