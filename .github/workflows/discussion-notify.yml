@@ -29,6 +29,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            About repository [${{ github.event.repository.name }}](https://github.com/${{ github.repository }}).
             There are currently ${{steps.repo-discussion.outputs.count}} discussions, come on!
           format: markdown
