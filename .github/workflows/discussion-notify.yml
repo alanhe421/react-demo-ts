@@ -21,6 +21,8 @@ jobs:
       - name: Discussion Count
         id: repo-discussion
         uses: alanhe421/repo-discussion-count-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Notify
         uses: appleboy/telegram-action@master
         with:
